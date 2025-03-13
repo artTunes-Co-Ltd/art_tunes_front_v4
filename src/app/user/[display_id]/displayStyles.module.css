@@ -1,0 +1,22 @@
+.nodeName {
+    @apply flex-[1_0_0] self-stretch text-[#1C1C1C] text-[21px]
+      font-bold leading-[36px] tracking-[0.18px] font-sans;
+  }
+
+  .nodeDescription {
+    @apply text-[#1C1C1C] text-[13px] font-normal leading-[20px]
+      tracking-[0.06px] font-sans;
+  }
+  .Favicon {
+    /* Tailwind のユーティリティクラスをまとめて適用 */
+    @apply w-[32px] h-[32px] rounded-[32px] overflow-hidden border border-[#E8E7E4];
+
+    /* 背景画像関連はネイティブCSSで指定 */
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: lightgray;
+
+    /* デフォルトの背景画像を設定したい場合 */
+    background-image: url('/icons/Source.svg');
+  }
