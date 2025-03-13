@@ -2,9 +2,9 @@
 import Image from "next/image";
 import type { NodeItem } from "@/types/Node";
 
-interface NodeListProps {
-  nodes: NodeItem[];
-}
+// interface NodeListProps {
+//   nodes: NodeItem[];
+// }
 
 export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
     return (
@@ -56,40 +56,40 @@ export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
     );
   }
 
-function NoNodes() {
-  return (
-    <div className="flex flex-col items-center gap-2 mt-2 w-full">
-      <Image
-        src="/icons/Node.svg"
-        alt="ノードがありません"
-        width={32}
-        height={32}
-      />
-      <p className="text-gray-600 text-sm font-bold">連携しているノードがありません</p>
-      <p
-            className="
-              text-gray-400 text-xs
-              max-w-[400px]
-              text-center
-              whitespace-normal
-              leading-normal
-            "
-          >
-        連携したいノードを追加すると、そのノードから取得した情報が表示されるようになります
-      </p>
-    </div>
-  );
-}
+// function NoNodes() {
+//   return (
+//     <div className="flex flex-col items-center gap-2 mt-2 w-full">
+//       <Image
+//         src="/icons/Node.svg"
+//         alt="ノードがありません"
+//         width={32}
+//         height={32}
+//       />
+//       <p className="text-gray-600 text-sm font-bold">連携しているノードがありません</p>
+//       <p
+//             className="
+//               text-gray-400 text-xs
+//               max-w-[400px]
+//               text-center
+//               whitespace-normal
+//               leading-normal
+//             "
+//           >
+//         連携したいノードを追加すると、そのノードから取得した情報が表示されるようになります
+//       </p>
+//     </div>
+//   );
+// }
 
-function NodeListContent({ nodes }: { nodes: NodeItem[] }) {
-  return (
-    <div className="flex flex-col gap-2 mt-2">
-      {nodes.map((node) => (
-        <NodeItemCard key={node.id} node={node} />
-      ))}
-    </div>
-  );
-}
+// function NodeListContent({ nodes }: { nodes: NodeItem[] }) {
+//   return (
+//     <div className="flex flex-col gap-2 mt-2">
+//       {nodes.map((node) => (
+//         <NodeItemCard key={node.id} node={node} />
+//       ))}
+//     </div>
+//   );
+// }
 
 function NodeItemCard({ node }: { node: NodeItem }) {
   const iconPath = getNodeIcon(node.displayDataType);

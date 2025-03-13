@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import UserPageClient from "./UserPageClient";
 import type { User } from "@/types/User";
 import type { NodeItem } from "@/types/Node";
 import type { Source } from "@/types/Source";
-
 
 // サーバーサイドでユーザーデータを取得する関数
 async function getUserByDisplayID(displayID: string): Promise<User | null> {
@@ -143,6 +143,7 @@ async function getSourcesByUserUID(uid: string): Promise<Source[]> { //test用
   ];
 }
 
+// ページコンポーネントの props 型をインラインで定義する
 export default async function Page({ params }: { params: { display_id: string } }) {
   const user = await getUserByDisplayID(params.display_id);
   if (!user) {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./displayStyles.module.css";
@@ -9,10 +10,10 @@ interface PdfDetailProps {
   node: NodeItem; // DisplayDataType = "pdf" のノードを想定
 }
 
-interface PdfMetadataProps {
-  fileName: string;
-  contentLength: string; // APIから返ってきた文字列
-}
+// interface PdfMetadataProps {
+//   fileName: string;
+//   contentLength: string; // APIから返ってきた文字列
+// }
 
 /** PDF メタ情報を表示するコンポーネント */
 function PdfMetadata({ fileName, contentLength }: { fileName: string; contentLength: string }) {

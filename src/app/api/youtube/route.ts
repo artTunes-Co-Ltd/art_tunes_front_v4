@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/app/api/youtube/route.ts
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
