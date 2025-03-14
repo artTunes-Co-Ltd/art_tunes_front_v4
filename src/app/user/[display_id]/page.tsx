@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import UserPageClient from "./UserPageClient";
+import { Metadata } from "next";
 import type { User } from "@/types/User";
 import type { NodeItem } from "@/types/Node";
 import type { Source } from "@/types/Source";
@@ -142,6 +143,28 @@ async function getSourcesByUserUID(uid: string): Promise<Source[]> { //test用
     // 必要に応じて追加
   ];
 }
+
+// 動的メタデータ
+export async function generateMetadata({ params }: { params: { display_id: string } }): Promise<Metadata> {
+  const user = await getUserByDisplayID(params.display_id);
+  if (!user) {
+    return {
+      title: "ユーザーが見つかりません",
+      robots: {
+        index: false,
+      },
+    };
+  }
+  return {
+    // 例: "Taro / artTunes"
+    title: `${user.displayName} / artTunes`,
+    // noindex を付けたい場合
+    robots: {
+      index: false,
+    },
+  };
+}
+
 
 // ページコンポーネントの props 型をインラインで定義する
 export default async function Page({ params }: { params: { display_id: string } }) {

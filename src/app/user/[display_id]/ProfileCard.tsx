@@ -62,10 +62,10 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
             <div className="text-[#1C1C1C] text-[15px] font-bold leading-[24px] tracking-[0.09px]">
               {user.displayName || "ユーザー名"}
             </div>
-            {/* @user_id */}
+            {/* @user_id 
             <div className="mt-1 text-[11px] text-[#828282]">
               @user_id
-            </div>
+            </div>*/}
             {/* display_id + コピーアイコン */}
             <div className="flex items-center gap-2 mt-2">
               <div className="text-[#1C1C1C] text-[13px] leading-[20px] tracking-[0.06px]">

@@ -9,16 +9,7 @@ interface SourcesPanelProps {
 
 export default function SourcesPanel({ sources, onClose }: SourcesPanelProps) {
   return (
-    <div
-      className="
-        flex flex-col
-        w-[384px]
-        h-screen
-        shadow-[-12px_0px_24px_0px_rgba(0,0,0,0.08)]
-        bg-[#FFFFFB]
-        overflow-auto
-      "
-    >
+    <div>
       {/* ヘッダー: 閉じるボタン (左上) */}
       <div className="flex justify-start p-4">
         <CloseButton onClose={onClose} />
