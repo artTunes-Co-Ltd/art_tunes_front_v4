@@ -10,26 +10,35 @@ export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
     return (
       <div className="w-full">
         {/* タイトルボックス */}
-        <div className="flex items-center gap-2 mb-4">
-          <Image
-            src="/icons/Node.svg"
-            alt="ノードアイコン"
-            width={24}
-            height={24}
-          />
-          <p
-            className="
-              text-[#1C1C1C]
-              text-[21px]
-              font-bold
-              leading-[36px]
-              tracking-[0.18px]
-            "
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            ノード
-          </p>
-        </div>
+        <div
+  className="
+    px-[16px]  /* 左右16px */
+    py-[12px]  /* 上下12px */
+  "
+>
+
+  <div className="flex items-center gap-[8px]">
+    <Image
+      src="/icons/Node.svg"
+      alt="ノードアイコン"
+      width={24}
+      height={24}
+    />
+    <p
+      className="
+        text-[#1C1C1C]
+        text-[21px]
+        font-bold
+        leading-[36px]
+        tracking-[0.18px]
+      "
+      style={{ fontFamily: "Inter, sans-serif" }}
+    >
+      ノード
+    </p>
+  </div>
+</div>
+
   
         {/* ノードが0件かどうか */}
         {(!nodes || nodes.length === 0) ? (
@@ -100,8 +109,10 @@ function NodeItemCard({ node }: { node: NodeItem }) {
       target="_blank"
       rel="noopener noreferrer"
       className="
-        flex items-start gap-2
-        p-3
+        flex
+         items-start gap-2
+        p-[8px]
+        h-[72px]
         border border-[#E8E7E4]
         rounded
         hover:bg-gray-50
@@ -134,7 +145,7 @@ function NodeItemCard({ node }: { node: NodeItem }) {
         {/* Description (2行省略) */}
         <p
           className="
-            mt-1
+            mt-[4px]
             text-[#1C1C1C]
             text-[11px]
             font-normal
@@ -151,7 +162,7 @@ function NodeItemCard({ node }: { node: NodeItem }) {
         >
           {node.description}
         </p>
-      </div>
+        </div>
     </a>
   );
 }

@@ -27,7 +27,7 @@ export default function UserPageClient({ user, nodes, sources }: UserPageClientP
       {/* ヘッダーもここにまとめる */}
       <Header />
       {/* メインコンテンツ */}
-      <main className="flex flex-col items-center w-full max-w-[1280px] mx-auto px-4 py-8">
+      <main className="flex flex-col items-center w-full max-w-[1280px] mx-auto px-4 py-9">
       {/* プロフィールカード */}
       <div className="max-w-[448px] w-full">
       <ProfileCard user={user} onDetailClick={() => setShowDetail(true)} />

@@ -76,13 +76,21 @@ export default function WebDetail({ node }: WebDetailProps) {
         "
       >
         {/* ここにPDFの詳細を表示する。例: node.name, node.description, node.link など */}
+        <div
+          className="
+          my-[12px]         /* コンテナ自体に上下12pxのマージン */
+          flex
+          flex-col
+          gap-[12px]        /* 子要素（node.name と node.description）の間に12pxの隙間 */
+        "
+      >
         <h2 className={styles.nodeName}>
-          {node.name}1
+          {node.name}
         </h2>
-
         <p className={styles.nodeDescription}>
           {node.description}
         </p>
+        </div>
         {/* 画像枠は常に描画, ogpData?.image がある場合だけ背景画像を差し込む */}
         <div
           className="
@@ -93,6 +101,7 @@ export default function WebDetail({ node }: WebDetailProps) {
             rounded-[12px]
             border border-[#FCFAF2]
             overflow-hidden
+            my-[12px]
           "
           style={{
             background: ogpData?.image
