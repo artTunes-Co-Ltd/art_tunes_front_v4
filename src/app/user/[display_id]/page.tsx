@@ -55,7 +55,7 @@ async function getNodesByUserUID(uid: string): Promise<NodeItem[]> {
 //       sort: 1,
 //       name: "Web Node",
 //       description: "A sample web node",
-//       link: "https://qiita.com/GIFCat/items/d79e077499d7c520eea7",
+//       link: "https://www.instagram.com/mizutanikota/",
 //       displayDataType: "web",
 //     },
 //     {
