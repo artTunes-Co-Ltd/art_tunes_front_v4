@@ -9,7 +9,11 @@ interface ProfileDetailCardProps {
   onOpenSources: () => void;
 }
 
-export default function ProfileDetailCard({ user, onClose, onOpenSources  }: ProfileDetailCardProps) {
+export default function ProfileDetailCard({
+  user,
+  onClose,
+  onOpenSources,
+}: ProfileDetailCardProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = user.eyeCatches?.slice(0, 5) || [];
@@ -27,16 +31,7 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
   const handleSetIndex = (i: number) => setCurrentIndex(i);
 
   return (
-    <div
-      className="
-        flex flex-col
-        w-[384px]
-        h-screen
-        shadow-[-12px_0px_24px_0px_rgba(0,0,0,0.08)]
-        bg-[#FFFFFB]
-        overflow-auto
-      "
-    >
+    <div>
       {/* ヘッダー: 左側に閉じるボタン */}
       <div className="flex justify-start p-4">
         <CloseButton onClose={onClose} />
@@ -70,16 +65,16 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
                 text-ellipsis
               "
               style={{
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 1,
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: "Inter, sans-serif",
               }}
             >
               {user.displayName || "ユーザー名"}
             </div>
 
-            {/* @user_id (1行省略) */}
+            {/* @user_id
             <div
               className="
                 text-[#828282]
@@ -91,14 +86,14 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
                 text-ellipsis
               "
               style={{
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 1,
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: "Inter, sans-serif",
               }}
             >
               @user_id
-            </div>
+            </div> */}
 
             {/* display_id + コピー */}
             <div className="flex items-center gap-2">
@@ -110,7 +105,7 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
                   leading-[20px]
                   tracking-[0.06px]
                 "
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: "Inter, sans-serif" }}
               >
                 {displayIDFormatted}
               </div>
@@ -127,7 +122,7 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
                   leading-[16px]
                   tracking-[0.03px]
                 "
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: "Inter, sans-serif" }}
               >
                 {user.title}
               </div>
@@ -137,12 +132,12 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
 
         {/* プロフィール文 (フル表示) */}
         <div
-  className={`mt-2 font-normal text-[11px] leading-[16px] tracking-[0.03px] font-sans ${
-    user.profile
-      ? "text-[#1C1C1C] whitespace-pre-wrap"
-      : "text-[#828282] overflow-hidden whitespace-nowrap text-ellipsis"
-  }`}
->
+          className={`mt-2 font-normal text-[11px] leading-[16px] tracking-[0.03px] font-sans ${
+            user.profile
+              ? "text-[#1C1C1C] whitespace-pre-wrap"
+              : "text-[#828282] overflow-hidden whitespace-nowrap text-ellipsis"
+          }`}
+        >
           {user.profile || "紹介文がありません"}
         </div>
 
@@ -160,19 +155,27 @@ export default function ProfileDetailCard({ user, onClose, onOpenSources  }: Pro
           </div>
         ) : (
           <div className="flex items-center gap-1 text-gray-400 mt-4">
-            <Image src="/icons/Warning.svg" alt="情報がありません" width={16} height={16} />
+            <Image
+              src="/icons/Warning.svg"
+              alt="情報がありません"
+              width={16}
+              height={16}
+            />
             <p
               className="
-              overflow-hidden       /* overflow: hidden; */
-              whitespace-nowrap     /* text-overflow: ellipsis に必要 */
-              text-ellipsis         /* text-overflow: ellipsis; Tailwind 3.0+ */
-              text-[#828282]        /* color: #828282 */
-              text-[11px]           /* font-size: 11px */
-              font-normal           /* font-weight: 400 */
-              leading-[16px]        /* line-height: 16px */
-              tracking-[0.03px]     /* letter-spacing: 0.03px */
-            "
-              style={{ fontFamily: 'Inter, sans-serif' }}>プレビュー画像の情報がありません</p>
+                overflow-hidden       /* overflow: hidden; */
+                whitespace-nowrap     /* text-overflow: ellipsis に必要 */
+                text-ellipsis         /* text-overflow: ellipsis; Tailwind 3.0+ */
+                text-[#828282]        /* color: #828282 */
+                text-[11px]           /* font-size: 11px */
+                font-normal           /* font-weight: 400 */
+                leading-[16px]        /* line-height: 16px */
+                tracking-[0.03px]     /* letter-spacing: 0.03px */
+              "
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              プレビュー画像の情報がありません
+            </p>
           </div>
         )}
       </div>
@@ -194,12 +197,7 @@ function CloseButton({ onClose }: { onClose: () => void }) {
       "
     >
       {/* x.svg */}
-      <Image
-        src="/icons/x.svg"
-        alt="閉じる"
-        width={12}
-        height={12}
-      />
+      <Image src="/icons/x.svg" alt="閉じる" width={12} height={12} />
       {/* 「閉じる」テキスト: Figma指定 */}
       <span
         className="
@@ -209,7 +207,7 @@ function CloseButton({ onClose }: { onClose: () => void }) {
           leading-[20px]
           tracking-[0.06px]
         "
-        style={{ fontFamily: 'Inter, sans-serif', textAlign: 'center' }}
+        style={{ fontFamily: "Inter, sans-serif", textAlign: "center" }}
       >
         閉じる
       </span>
@@ -240,12 +238,7 @@ function CopyButton({ displayID }: { displayID: string }) {
         hover:opacity-80
       "
     >
-      <Image
-        src="/icons/Copy.svg"
-        alt="Copy"
-        width={16}
-        height={16}
-      />
+      <Image src="/icons/Copy.svg" alt="Copy" width={16} height={16} />
     </button>
   );
 }
@@ -269,7 +262,7 @@ function ImageCarousel({
   return (
     <div className="flex flex-col items-center gap-2">
       {/* メイン画像 */}
-      <div className="relative w-[352px] h-[352px] overflow-hidden rounded-[12px]">
+      <div className="relative  w-full max-w-[352px] aspect-square overflow-hidden rounded-[12px]">
         <Image
           key={currentIndex}
           src={images[currentIndex]}
@@ -291,7 +284,12 @@ function ImageCarousel({
           {images.map((_, i) => (
             <div key={i} onClick={() => setIndex(i)} className="cursor-pointer">
               {i === currentIndex ? (
-                <Image src="/icons/Page_Control.svg" alt="現在のページ" width={12} height={12} />
+                <Image
+                  src="/icons/Page_Control.svg"
+                  alt="現在のページ"
+                  width={12}
+                  height={12}
+                />
               ) : (
                 <Image src="/icons/o.svg" alt="他のページ" width={4} height={4.25} />
               )}
@@ -304,17 +302,25 @@ function ImageCarousel({
           <Image src="/icons/Arrow_Right.svg" alt="次へ" width={24} height={24} />
         </button>
       </div>
+
       {/* 下のテキスト部分 */}
       <div
-        className="flex-1 text-center text-[#1C1C1C] text-[11px] font-normal leading-[16px] tracking-[0.03px] mt-2 px-4"
-        style={{ fontFamily: 'Inter, sans-serif' }}
+        className="
+          flex-1
+          text-center
+          text-[#1C1C1C]
+          text-[11px]
+          font-normal
+          leading-[16px]
+          tracking-[0.03px]
+          mt-2
+          px-4
+        "
+        style={{ fontFamily: "Inter, sans-serif" }}
       >
         カード情報は自動補完されている場合があります。<br />
         詳しくは{" "}
-        <span
-          onClick={onOpenSources}
-          className="cursor-pointer font-bold"
-        >
+        <span onClick={onOpenSources} className="cursor-pointer font-bold">
           ソース一覧
         </span>
         をご確認ください。

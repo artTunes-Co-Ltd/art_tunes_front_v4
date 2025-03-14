@@ -12,7 +12,6 @@ export default function ThreadsDetail({ node }: ThreadsDetailProps) {
     <div
       className="
         flex
-        w-[480px]
         pt-[24px]
         px-[16px]
         pb-0

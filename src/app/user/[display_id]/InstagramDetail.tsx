@@ -11,8 +11,7 @@ export default function PdfDetail({ node }: InstagramDetailProps) {
     // 外枠: display: flex; width: 480px; padding: 24px 16px 0px 16px; align-items: center; gap: 10px;
     <div
       className="
-        flex
-        w-[480px]
+        flexs
         pt-[24px]
         px-[16px]
         pb-0
@@ -34,7 +33,7 @@ export default function PdfDetail({ node }: InstagramDetailProps) {
       >
         {/* ここにPDFの詳細を表示する。例: node.name, node.description, node.link など */}
         <h2 className={styles.nodeName}>
-          {node.name} 
+          {node.name}
         </h2>
 
         <p className={styles.nodeDescription}>

@@ -38,20 +38,24 @@ export default function WebDetail({ node }: WebDetailProps) {
     }
   }, [node.link]);
 
-  if (error) {
-    return <div className="text-red-500">Error: {error}</div>;
-  }
+  // if (error) {
+  //   return <div className="text-red-500">Error: {error}</div>;
+  // }
 
-  if (!ogpData) {
-    return <div>Loading OGP data...</div>;
-  }
+  // if (!ogpData) {
+  //   return <div>Loading OGP data...</div>;
+  // }
 
   return (
     // 外枠: display: flex; width: 480px; padding: 24px 16px 0px 16px; align-items: center; gap: 10px;
+    <a
+      href={node.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    >
     <div
       className="
         flex
-        w-[480px]
         pt-[24px]
         px-[16px]
         pb-0
@@ -72,108 +76,130 @@ export default function WebDetail({ node }: WebDetailProps) {
         "
       >
         {/* ここにPDFの詳細を表示する。例: node.name, node.description, node.link など */}
+        <div
+          className="
+          my-[12px]         /* コンテナ自体に上下12pxのマージン */
+          flex
+          flex-col
+          gap-[12px]        /* 子要素（node.name と node.description）の間に12pxの隙間 */
+        "
+      >
         <h2 className={styles.nodeName}>
-          {node.name}1
+          {node.name}
         </h2>
-
         <p className={styles.nodeDescription}>
           {node.description}
         </p>
-        {/* OGP画像 */}
-        <div
-      className="
-        relative
-        w-[448px] h-[235px]
-        rounded-[12px]
-        border border-[#FCFAF2]
-        overflow-hidden
-      "
-      style={{
-        background: `url(${ogpData.image}) center / cover no-repeat, #E8E7E4`,
-      }}
-    />
-      <div
-      className="
-        flex
-        justify-between
-        items-start   /* 上揃え (縦方向) */
-        w-full
-        h-[36px]      /* コンテナの高さを36pxで固定 */
-      "
-    >
-      {/* 左側: web_title + url */}
-      <div className="flex flex-col h-full max-w-[280px]">
-        {/* サイト名 (1行省略, Figma: Title Small 15px / 24) */}
-        <h2
-          className="
-            text-[#1C1C1C]
-            text-[15px]
-            font-bold
-            leading-[24px]
-            tracking-[0.09px]
-            overflow-hidden
-            whitespace-nowrap
-            text-ellipsis
-          "
-          style={{
-            display: '-webkit-box',
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: 'vertical',
-            height: "20px",
-          }}
-        >
-          {ogpData.siteName || node.name}
-        </h2>
-
-        {/* URL (Figma: Body Small 11px / 16, color #828282) */}
-        <a
-          href={node.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
-            mt-1
-            text-[#828282]
-            text-[11px]
-            font-normal
-            leading-[16px]
-            tracking-[0.03px]
-            overflow-hidden
-            whitespace-nowrap
-            text-ellipsis
-          "
-          style={{
-            display: '-webkit-box',
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: 'vertical',
-            height: "16px",
-          }}
-        >
-          {node.link}
-        </a>
         </div>
-          {/* Favicon (32px円形) */}
-          <div
-            className={styles.Favicon}
+        {/* 画像枠は常に描画, ogpData?.image がある場合だけ背景画像を差し込む */}
+        <div
+          className="
+            relative
+            w-full
+            max-w-[448px]
+            aspect-[448/235]
+            rounded-[12px]
+            border border-[#FCFAF2]
+            overflow-hidden
+            my-[12px]
+          "
+          style={{
+            background: ogpData?.image
+              ? `url(${ogpData.image}) center / cover no-repeat, #E8E7E4`
+              : "#E8E7E4", // 失敗時 or 画像なしならグレー
+          }}
+        />
+        {/* OGPが取得できた場合だけ、画像・siteName等を表示 */}
+        {(!error && ogpData) ? (
+          <OgpSection ogpData={ogpData} node={node} />
+        ) : (
+          /* OGP失敗時 or ロード中は「ogp部」非表示 or 簡易代替 */
+          null
+        )}
+      </div>
+    </div>
+    </a>
+  );
+}
+
+/** OGP部分だけコンポーネント化 */
+function OgpSection({ ogpData, node }: { ogpData: OgpData; node: NodeItem }) {
+  return (
+    <>
+      {/* タイトル・URL・Favicon */}
+      <div className="flex justify-between items-start w-full h-[36px]">
+        <div className="flex flex-col h-full max-w-[280px]">
+          {/* OGPサイト名 */}
+          <h2
+            className="
+              text-[#1C1C1C]
+              text-[15px]
+              font-bold
+              leading-[24px]
+              tracking-[0.09px]
+              overflow-hidden
+              whitespace-nowrap
+              text-ellipsis
+            "
             style={{
-              background: ogpData.favicon
-                ? `url(${ogpData.favicon}) center / cover no-repeat, #E8E7E4`
-                : '#E8E7E4', // Faviconが無い場合は灰色
+              display: "-webkit-box",
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: "vertical",
+              height: "20px",
             }}
-          />
-</div>
-<div className="flex items-start gap-2 mt-2">
-          {/* 概要文 (Figma: Body Medium 13px / 20, color #1C1C1C) */}
-          <p className="
+          >
+            {ogpData.siteName || node.name}
+          </h2>
+
+          {/* リンク */}
+          <p
+            rel="noopener noreferrer"
+            className="
+              mt-1
+              text-[#828282]
+              text-[11px]
+              font-normal
+              leading-[16px]
+              tracking-[0.03px]
+              overflow-hidden
+              whitespace-nowrap
+              text-ellipsis
+            "
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: "vertical",
+              height: "16px",
+            }}
+          >
+            {node.link}
+          </p>
+        </div>
+        {/* favicon */}
+        <div
+          className={styles.Favicon}
+          style={{
+            background: ogpData.favicon
+              ? `url(${ogpData.favicon}) center / cover no-repeat, #E8E7E4`
+              : "#E8E7E4",
+          }}
+        />
+      </div>
+
+      {/* 概要文 */}
+      <div className="flex items-start gap-2 mt-2">
+        <p
+          className="
             text-[#1C1C1C]
             text-[13px]
             leading-[20px]
             tracking-[0.06px]
             font-normal
-          ">
-            {ogpData.summary}
-          </p>
-        </div>
+          "
+        >
+          {ogpData.summary}
+        </p>
       </div>
-    </div>
+    </>
   );
 }

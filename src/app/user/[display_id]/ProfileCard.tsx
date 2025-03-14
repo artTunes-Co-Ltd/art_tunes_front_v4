@@ -35,7 +35,6 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
     <div
       className="
         flex flex-col
-        w-[448px]
         px-[16px] pt-[16px] pb-[8px]
         rounded-[16px]
         border border-[#FCFAF2]
@@ -62,10 +61,10 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
             <div className="text-[#1C1C1C] text-[15px] font-bold leading-[24px] tracking-[0.09px]">
               {user.displayName || "ユーザー名"}
             </div>
-            {/* @user_id */}
+            {/* @user_id 
             <div className="mt-1 text-[11px] text-[#828282]">
               @user_id
-            </div>
+            </div>*/}
             {/* display_id + コピーアイコン */}
             <div className="flex items-center gap-2 mt-2">
               <div className="text-[#1C1C1C] text-[13px] leading-[20px] tracking-[0.06px]">
@@ -130,7 +129,7 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
         tracking-[0.03px]
         text-[#1C1C1C]
         font-normal
-        w-[349px]
+        flex-1
         overflow-hidden
         text-ellipsis
         whitespace-normal
@@ -198,7 +197,8 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
               className="
                 relative
                 flex items-center
-                w-[80px] h-[80px]
+                w-full
+                w-[80px]
                 aspect-square
                 border border-[#FCFAF2]
                 rounded-[8px]

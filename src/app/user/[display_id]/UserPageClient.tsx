@@ -26,9 +26,8 @@ export default function UserPageClient({ user, nodes, sources }: UserPageClientP
     <div className="relative min-h-screen w-full bg-[#FFFFFB]">
       {/* ヘッダーもここにまとめる */}
       <Header />
-
       {/* メインコンテンツ */}
-      <main className="flex flex-col items-center w-full max-w-[1280px] mx-auto px-4 py-8">
+      <main className="flex flex-col items-center w-full max-w-[1280px] mx-auto px-4 py-9">
       {/* プロフィールカード */}
       <div className="max-w-[448px] w-full">
       <ProfileCard user={user} onDetailClick={() => setShowDetail(true)} />
@@ -39,7 +38,7 @@ export default function UserPageClient({ user, nodes, sources }: UserPageClientP
       <NodeList nodes={nodes} />
       </div>
       {/* ↓ ノード一覧の下に、各ノードの詳細を表示 */}
-      <div className="max-w-[480px] w-full mt-8">
+      <div className="max-w-[480px] w-full mt-6">
         {nodes.map((node) => (
           <NodeDetail key={node.id} node={node} />
         ))}
@@ -55,7 +54,7 @@ export default function UserPageClient({ user, nodes, sources }: UserPageClientP
             onClick={() => setShowDetail(false)}
           />
           {/* 右パネル */}
-          <div className="ml-auto relative bg-[#FFFFFB] w-[384px] h-screen overflow-auto">
+          <div className="ml-auto relative bg-[#FFFFFB] w-full max-w-[384px] h-auto overflow-y-auto shadow-[-12px_0px_24px_0px_rgba(0,0,0,0.08)]">
             <ProfileDetailCard
               user={user}
               onClose={() => setShowDetail(false)}
@@ -76,7 +75,7 @@ export default function UserPageClient({ user, nodes, sources }: UserPageClientP
             className="absolute inset-0 bg-black/50"
             onClick={() => setShowSources(false)}
           />
-          <div className="ml-auto relative bg-[#FFFFFB] w-[384px] h-screen overflow-auto">
+          <div className="ml-auto relative bg-[#FFFFFB] w-[384px] h-auto overflow-y-auto shadow-[-12px_0px_24px_0px_rgba(0,0,0,0.08)]">
             <SourcesPanel
               sources={sources}
               onClose={() => setShowSources(false)}
