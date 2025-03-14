@@ -50,7 +50,7 @@ export default function Header() {
           >
             アプリを入手
           </Link>
-
+          {/* 一旦設定は非表示
           <Link
             href="/settings"
             className="
@@ -68,7 +68,7 @@ export default function Header() {
               width={24}
               height={24}
             />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </header>
