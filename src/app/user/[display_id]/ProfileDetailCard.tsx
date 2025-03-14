@@ -262,7 +262,7 @@ function ImageCarousel({
   return (
     <div className="flex flex-col items-center gap-2">
       {/* メイン画像 */}
-      <div className="relative w-[352px] h-[352px] overflow-hidden rounded-[12px]">
+      <div className="relative  w-full max-w-[352px] aspect-square overflow-hidden rounded-[12px]">
         <Image
           key={currentIndex}
           src={images[currentIndex]}

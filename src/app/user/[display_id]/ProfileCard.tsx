@@ -35,7 +35,6 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
     <div
       className="
         flex flex-col
-        w-[448px]
         px-[16px] pt-[16px] pb-[8px]
         rounded-[16px]
         border border-[#FCFAF2]
@@ -130,7 +129,7 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
         tracking-[0.03px]
         text-[#1C1C1C]
         font-normal
-        w-[349px]
+        flex-1
         overflow-hidden
         text-ellipsis
         whitespace-normal
@@ -198,7 +197,8 @@ export default function ProfileCard({ user, onDetailClick }: ProfileCardProps) {
               className="
                 relative
                 flex items-center
-                w-[80px] h-[80px]
+                w-full
+                w-[80px]
                 aspect-square
                 border border-[#FCFAF2]
                 rounded-[8px]

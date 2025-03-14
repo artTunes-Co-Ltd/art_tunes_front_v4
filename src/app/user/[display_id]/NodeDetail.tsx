@@ -16,15 +16,16 @@ export default function NodeDetail({ node }: { node: NodeItem }) {
       return <WebDetail node={node} />;
 
     case "instagram":
-      return <InstagramDetail node={node} />;
+      return null;
+      // return <InstagramDetail node={node} />;
 
     case "threads":
-      // ...
-      return <ThreadsDetail node={node} />;
+      return null;
+      // return <ThreadsDetail node={node} />;
 
     case "youtube":
-      // ...
-      return <YoutubeDetail node={node} />;
+      return null;
+      // return <YoutubeDetail node={node} />;
 
     default:
       return null;
