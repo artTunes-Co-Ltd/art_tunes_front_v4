@@ -158,10 +158,10 @@ export async function generateMetadata({ params }: { params: { display_id: strin
   return {
     // 例: "Taro / artTunes"
     title: `${user.displayName} / artTunes`,
-    // noindex を付けたい場合
-    robots: {
-      index: false,
-    },
+    // noindex を付けたい場合(stgのみ)
+    // robots: {
+    //   index: false,
+    // },
   };
 }
 
