@@ -162,6 +162,10 @@ export async function generateMetadata({ params }: { params: { display_id: strin
     robots: {
       index: false,
     },
+    // App Storeリンク用のメタタグを追加
+    other: {
+      'apple-itunes-app': 'app-id=6739798815',
+    },
   };
 }
 
