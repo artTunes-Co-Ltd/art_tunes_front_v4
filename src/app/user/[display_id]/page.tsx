@@ -154,7 +154,7 @@ export async function generateMetadata({ params }: { params: { display_id: strin
         index: false,
       },
       other: {
-        'apple-itunes-app': 'app-id=6739798815',
+        'apple-itunes-app': 'app-id=6738398627',
       },
     };
   }
@@ -167,7 +167,7 @@ export async function generateMetadata({ params }: { params: { display_id: strin
     },
     // App Storeリンク用のメタタグを追加
     other: {
-      'apple-itunes-app': 'app-id=6739798815',
+      'apple-itunes-app': 'app-id=6738398627',
     },
   };
 }
