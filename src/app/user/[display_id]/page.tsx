@@ -153,6 +153,9 @@ export async function generateMetadata({ params }: { params: { display_id: strin
       robots: {
         index: false,
       },
+      other: {
+        'apple-itunes-app': 'app-id=6739798815',
+      },
     };
   }
   return {
