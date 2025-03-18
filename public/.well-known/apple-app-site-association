@@ -1,8 +1,10 @@
 {
   "applinks": {
+    "apps":[],
     "details": [
       {
-        "appIDs": ["7QV8923GHH.net.art-tunes.node.stg", "7QV8923GHH.net.art-tunes.node"]
+        "appIDs": ["7QV8923GHH.net.art-tunes.node.stg", "7QV8923GHH.net.art-tunes.node"],
+        "paths": ["*"]
       }
     ]
   }
