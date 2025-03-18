@@ -5,9 +5,10 @@ import type { User } from "@/types/User";
 import type { NodeItem } from "@/types/Node";
 import type { Source } from "@/types/Source";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://v4-stg-api.art-tunes.art"; // デフォルトはstg
 // サーバーサイドでユーザーデータを取得する関数
 async function getUserByDisplayID(displayID: string): Promise<User | null> {
-  const res = await fetch(`https://v4-stg-api.art-tunes.art/users/display/${displayID}`, {
+  const res = await fetch(`${API_BASE_URL}/users/display/${displayID}`, {
     cache: 'no-store',
   });
   if (!res.ok) return null;
@@ -28,7 +29,7 @@ async function getUserByDisplayID(displayID: string): Promise<User | null> {
 
 // サーバーサイドでノードを取得する関数
 async function getNodesByUserUID(uid: string): Promise<NodeItem[]> {
-  const res = await fetch(`https://v4-stg-api.art-tunes.art/nodes/${uid}`, {
+  const res = await fetch(`${API_BASE_URL}/nodes/${uid}`, {
     cache: 'no-store',
   });
   if (!res.ok) return [];
@@ -102,7 +103,7 @@ async function getNodesByUserUID(uid: string): Promise<NodeItem[]> {
 // }
 
 async function getSourcesByUserUID(uid: string): Promise<Source[]> {
-  const res = await fetch(`https://v4-stg-api.art-tunes.art/sources/${uid}`, {
+  const res = await fetch(`${API_BASE_URL}/sources/${uid}`, {
     cache: 'no-store',
   });
   if (!res.ok) return [];
@@ -161,10 +162,6 @@ export async function generateMetadata({ params }: { params: { display_id: strin
   return {
     // 例: "Taro / artTunes"
     title: `${user.displayName} / artTunes`,
-    // noindex を付けたい場合
-    robots: {
-      index: false,
-    },
     // App Storeリンク用のメタタグを追加
     other: {
       'apple-itunes-app': 'app-id=6738398627',

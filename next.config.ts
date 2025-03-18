@@ -12,11 +12,27 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'v4-api.art-tunes.art',
+      },
+      {
+        protocol: 'https',
         hostname: 'v4-stg-api.art-tunes.art',
       },
       {
         protocol: 'https',
         hostname: 'stg-media.art-tunes.art',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.art-tunes.art',
+      },
+      {
+        protocol: 'https',
+        hostname: 'app.art-tunes.art',
+      },
+      {
+        protocol: 'https',
+        hostname: 'stg-app.art-tunes.art',
       },
       {
         protocol: 'https',
