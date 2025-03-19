@@ -3,12 +3,13 @@
     "apps":[],
     "details": [
       {
-        "appIDs": ["7QV8923GHH.net.art-tunes.node.stg", "7QV8923GHH.net.art-tunes.node"],
-        "paths": ["*"]
+        "appID": "7QV8923GHH.net.art-tunes.node.stg",
+        "paths": [ "*" ]
+      },
+      {
+        "appID": "7QV8923GHH.net.art-tunes.node",
+        "paths": [ "*" ]
       }
     ]
-  },
-  "webcredentials": {
-    "apps": ["7QV8923GHH.net.art-tunes.node.stg", "7QV8923GHH.net.art-tunes.node"]
   }
 }
