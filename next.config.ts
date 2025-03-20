@@ -44,12 +44,28 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/.well-known/apple-app-site-association",
-        headers: [
-          { key: "Content-Type", value: "application/json" }
-        ]
-      }
+        headers: [{ key: "Content-Type", value: "application/json" }],
+      },
+      {
+        source: "/.well-known/assetlinks.json",
+        headers: [{ key: "Content-Type", value: "application/json" }],
+      },
     ];
-  }
+  },
+  async rewrites() {
+    return [
+      // iOS Universal Links (AASA)
+      {
+        source: "/.well-known/apple-app-site-association",
+        destination: "/api/.well-known/apple-app-site-association",
+      },
+      // Android App Links
+      {
+        source: "/.well-known/assetlinks.json",
+        destination: "/api/.well-known/assetlinks.json",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
