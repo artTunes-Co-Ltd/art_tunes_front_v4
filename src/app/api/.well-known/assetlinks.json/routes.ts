@@ -22,11 +22,11 @@ export async function GET() {
         }
     ];
 
-    return new NextResponse(JSON.stringify(jsonResponse), {
+    return new Response(JSON.stringify(jsonResponse), {
         status: 200,
         headers: {
-            "Content-Type": "application/json",
-            "Content-Disposition": "inline"
-        }
+            "Content-Type": "application/json; charset=utf-8",
+            "Content-Disposition": "inline",
+        },
     });
 }
