@@ -154,15 +154,18 @@ export async function generateMetadata({ params }: { params: { display_id: strin
       robots: {
         index: false,
       },
+      other: {
+        'apple-itunes-app': 'app-id=6738398627',
+      },
     };
   }
   return {
     // 例: "Taro / artTunes"
     title: `${user.displayName} / artTunes`,
-    // noindex を付けたい場合(stgのみ)
-    // robots: {
-    //   index: false,
-    // },
+    // App Storeリンク用のメタタグを追加
+    other: {
+      'apple-itunes-app': 'app-id=6738398627',
+    },
   };
 }
 
