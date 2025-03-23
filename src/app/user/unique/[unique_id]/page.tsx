@@ -30,11 +30,22 @@ async function getUserByUniqueID(uniqueID: string): Promise<User | null> {
 // ノード取得用
 async function getNodesByUserUID(uid: string): Promise<NodeItem[]> {
   const res = await fetch(`${API_BASE_URL}/nodes/${uid}`, {
-    cache: 'no-store'
+    cache: 'no-store',
   });
   if (!res.ok) return [];
   const data = await res.json();
-  return Array.isArray(data) ? data : [];
+  if (!Array.isArray(data)) {
+    return [];
+  }
+  // display_data_type を displayDataType に変換する
+  return data.map((item: any) => ({
+    id: item.id,
+    sort: item.sort,
+    name: item.name,
+    description: item.description,
+    link: item.link,
+    displayDataType: item.display_data_type,
+  }));
 }
 
 // ソース取得用
