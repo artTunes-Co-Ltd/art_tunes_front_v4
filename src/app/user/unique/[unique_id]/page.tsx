@@ -82,12 +82,7 @@ export async function generateMetadata({
   // ページの説明文はユーザーの自己紹介文 (profile)
   const pageDescription = user.profile || "";
 
-// fallback用のOGP画像URLを絶対URLで生成する例
-const fallbackOgpUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_API_BASE_URL}/ogp_anonymous.png`
-  : "/ogp_anonymous.png";
-
-const ogpImageUrl = (user as any).ogpImageUrl || fallbackOgpUrl;
+  const ogpImageUrl = user.ogpImageUrl || "/ogp_anonymous.png";
 
   return {
     title: pageTitle,
