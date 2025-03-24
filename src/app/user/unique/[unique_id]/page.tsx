@@ -81,8 +81,9 @@ export async function generateMetadata({
   const pageTitle = `${user.displayName} (@${uniqueId}) | artTunes`;
   // ページの説明文はユーザーの自己紹介文 (profile)
   const pageDescription = user.profile || "";
+
   // バックエンドで合成したOGP 画像URLがあればそれを使用
-  const ogpImageUrl = (user as any).ogpImageUrl || "";
+  const ogpImageUrl = (user as any).ogpImageUrl || "/ogp_anonymous.png";
 
   return {
     title: pageTitle,
