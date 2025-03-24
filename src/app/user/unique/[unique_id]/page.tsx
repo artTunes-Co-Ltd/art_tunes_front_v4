@@ -82,7 +82,18 @@ export async function generateMetadata({
   // ページの説明文はユーザーの自己紹介文 (profile)
   const pageDescription = user.profile || "";
 
-  const ogpImageUrl = user.ogpImageUrl || "/ogp_anonymous.png";
+  // 1) 環境変数からドメインを決定
+  const appEnv = process.env.NEXT_PUBLIC_APP_ENV; // "staging" or "production" など
+  let domain = "http://localhost:3000"; // fallback: ローカル or dev
+  if (appEnv === "staging") {
+    domain = "https://stg-app.art-tunes.art";
+  } else if (appEnv === "production") {
+    domain = "https://app.art-tunes.art";
+  }
+
+  // 2) もし user.ogpImageUrl が空なら、fallback として ogp_anonymous.png を絶対パスで設定
+  const fallbackOgpUrl = `${domain}/ogp_anonymous.png`;
+  const ogpImageUrl = user.ogpImageUrl || fallbackOgpUrl;
 
   return {
     title: pageTitle,
