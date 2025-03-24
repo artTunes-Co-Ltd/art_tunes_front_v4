@@ -19,6 +19,7 @@ async function getUserByUniqueID(uniqueID: string): Promise<User | null> {
     displayName: data.display_name,
     icon: data.icon,
     headerImageUrl: data.header_image_url,
+    ogpImageUrl: data.ogp_image_url,
     category: data.category,
     role: data.role,
     title: data.title,
@@ -76,9 +77,25 @@ export async function generateMetadata({
       robots: { index: false },
     };
   }
-  
+  // タイトルは「ユーザー名（@ユニークID）| artTunes」
+  const pageTitle = `${user.displayName} (@${uniqueId}) | artTunes`;
+  // ページの説明文はユーザーの自己紹介文 (profile)
+  const pageDescription = user.profile || "";
+  // バックエンドで合成したOGP 画像URLがあればそれを使用
+  const ogpImageUrl = (user as any).ogpImageUrl || "";
+
   return {
-    title: `${user.displayName} / artTunes`,
+    title: pageTitle,
+    openGraph: {
+      type: "profile",            // ページの種類
+      title: pageTitle,           // OGPタイトル
+      description: pageDescription, // OGP説明文
+      images: [
+        {
+          url: ogpImageUrl,      // バックエンドが返してくれた OGP画像URL
+        },
+      ],
+    },
   };
 }
 

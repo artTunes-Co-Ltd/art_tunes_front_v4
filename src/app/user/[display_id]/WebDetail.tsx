@@ -6,9 +6,10 @@ import type { NodeItem } from "@/types/Node";
 
 interface OgpData {
   image: string;
+  title: string;
   siteName: string;
   favicon: string;
-  summary: string;
+  description: string;
 }
 
 interface WebDetailProps {
@@ -148,7 +149,7 @@ function OgpSection({ ogpData, node }: { ogpData: OgpData; node: NodeItem }) {
               height: "20px",
             }}
           >
-            {ogpData.siteName || node.name}
+            {ogpData.siteName || ogpData.title || node.name}
           </h2>
 
           {/* リンク */}
@@ -197,7 +198,7 @@ function OgpSection({ ogpData, node }: { ogpData: OgpData; node: NodeItem }) {
             font-normal
           "
         >
-          {ogpData.summary}
+          {ogpData.description}
         </p>
       </div>
     </>

@@ -19,6 +19,7 @@ async function getUserByDisplayID(displayID: string): Promise<User | null> {
     displayName: data.display_name,
     icon: data.icon,
     headerImageUrl: data.header_image_url,
+    ogpImageUrl: data.ogpImageUrl,
     category: data.category,
     role: data.role,
     title: data.title,

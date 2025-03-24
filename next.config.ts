@@ -24,6 +24,18 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'art-tunes-v3-stg-bucket.s3.us-west-2.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'art-tunes-v3-prd-bucket.s3.ap-northeast-1.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'media.art-tunes.art',
       },
       {

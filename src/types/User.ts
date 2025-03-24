@@ -4,6 +4,7 @@ export interface User {
     displayName: string;
     icon: string;
     headerImageUrl: string;
+    ogpImageUrl: string;
     category: string;
     role: string;
     title: string;
