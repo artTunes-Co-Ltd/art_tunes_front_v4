@@ -43,7 +43,7 @@ export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
         ) : (
           <div className="px-4">
           {/* ラッパ要素: 幅固定 + overflow-hidden */}
-          <div className="relative w-[448px] h-auto overflow-x-auto hide-scrollbar">
+          <div className="relative max-w-[480px] w-full h-auto overflow-x-auto hide-scrollbar">
             <div className="grid grid-flow-col grid-rows-3 gap-2">
               {nodes.map((node) => (
                 <NodeItemCard key={node.id} node={node} wide />
