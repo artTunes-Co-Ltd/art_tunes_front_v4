@@ -6,7 +6,7 @@ export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
   return (
     <div className="w-full">
       {/* タイトルボックス */}
-      <div className="px-[16px] py-[12px]">
+      <div className="py-[12px]">
         <div className="flex items-center gap-[8px]">
           <Image
             src="/icons/Node.svg"
@@ -41,8 +41,8 @@ export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
             ))}
           </div>
         ) : (
-          <div className="px-4">
-          {/* ラッパ要素: 幅固定 + overflow-hidden */}
+          <div className="pl-0 pr-0">
+          {/* ラッパ要素 */}
           <div className="relative max-w-[480px] w-full h-auto overflow-x-auto hide-scrollbar">
             <div className="grid grid-flow-col grid-rows-3 gap-2">
               {nodes.map((node) => (
