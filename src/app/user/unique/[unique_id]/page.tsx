@@ -16,6 +16,7 @@ async function getUserByUniqueID(uniqueID: string): Promise<User | null> {
   return {
     uid: data.uid,
     displayID: data.display_id,
+    uniqueID: data.unique_id,
     displayName: data.display_name,
     icon: data.icon,
     headerImageUrl: data.header_image_url,

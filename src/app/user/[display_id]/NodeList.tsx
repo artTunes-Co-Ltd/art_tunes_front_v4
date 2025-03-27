@@ -2,105 +2,84 @@
 import Image from "next/image";
 import type { NodeItem } from "@/types/Node";
 
-// interface NodeListProps {
-//   nodes: NodeItem[];
-// }
-
 export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
-    return (
-      <div className="w-full">
-        {/* タイトルボックス */}
-        <div
-  className="
-    px-[16px]  /* 左右16px */
-    py-[12px]  /* 上下12px */
-  "
->
+  return (
+    <div className="w-full">
+      {/* タイトルボックス */}
+      <div className="px-[16px] py-[12px]">
+        <div className="flex items-center gap-[8px]">
+          <Image
+            src="/icons/Node.svg"
+            alt="ノードアイコン"
+            width={24}
+            height={24}
+          />
+          <p
+            className="
+              text-[#1C1C1C]
+              text-[21px]
+              font-bold
+              leading-[36px]
+              tracking-[0.18px]
+            "
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            ノード
+          </p>
+        </div>
+      </div>
 
-  <div className="flex items-center gap-[8px]">
-    <Image
-      src="/icons/Node.svg"
-      alt="ノードアイコン"
-      width={24}
-      height={24}
-    />
-    <p
-      className="
-        text-[#1C1C1C]
-        text-[21px]
-        font-bold
-        leading-[36px]
-        tracking-[0.18px]
-      "
-      style={{ fontFamily: "Inter, sans-serif" }}
-    >
-      ノード
-    </p>
-  </div>
-</div>
-
-  
-        {/* ノードが0件かどうか */}
-        {(!nodes || nodes.length === 0) ? (
-          <div className="flex flex-col items-center gap-2 mt-4">
-            <Image
-              src="/icons/Node.svg"
-              alt="ノードがありません"
-              width={40}
-              height={40}
-            />
-            <p className="text-gray-600 text-sm font-bold">連携しているノードがありません</p>
-            <p className="text-gray-400 text-xs max-w-[320px] text-center whitespace-normal leading-normal">
-              連携したいノードを追加すると、そのノードから取得した情報が表示されるようになります。
-            </p>
-          </div>
-        ) : (
+      {/* ノードが0件かどうか */}
+      {(!nodes || nodes.length === 0) ? (
+        <NoNodes />
+      ) : (
+        // ノードが4つ未満なら縦並び、4つ以上なら3つずつ縦に並ぶ列を横に並べる
+        nodes.length <= 3 ? (
           <div className="flex flex-col gap-2">
             {nodes.map((node) => (
               <NodeItemCard key={node.id} node={node} />
             ))}
           </div>
-        )}
-      </div>
-    );
-  }
+        ) : (
+          <div className="px-4">
+          {/* ラッパ要素: 幅固定 + overflow-hidden */}
+          <div className="relative w-[448px] h-auto overflow-x-auto hide-scrollbar">
+            <div className="grid grid-flow-col grid-rows-3 gap-2">
+              {nodes.map((node) => (
+                <NodeItemCard key={node.id} node={node} wide />
+              ))}
+            </div>
+          </div>
+        </div>
+        )
+      )}
+    </div>
+  );
+}
 
-// function NoNodes() {
-//   return (
-//     <div className="flex flex-col items-center gap-2 mt-2 w-full">
-//       <Image
-//         src="/icons/Node.svg"
-//         alt="ノードがありません"
-//         width={32}
-//         height={32}
-//       />
-//       <p className="text-gray-600 text-sm font-bold">連携しているノードがありません</p>
-//       <p
-//             className="
-//               text-gray-400 text-xs
-//               max-w-[400px]
-//               text-center
-//               whitespace-normal
-//               leading-normal
-//             "
-//           >
-//         連携したいノードを追加すると、そのノードから取得した情報が表示されるようになります
-//       </p>
-//     </div>
-//   );
-// }
+function NoNodes() {
+  return (
+    <div className="flex flex-col items-center gap-2 mt-4">
+      <Image
+        src="/icons/Node.svg"
+        alt="ノードがありません"
+        width={40}
+        height={40}
+      />
+      <p className="text-gray-600 text-sm font-bold">連携しているノードがありません</p>
+      <p className="text-gray-400 text-xs max-w-[320px] text-center whitespace-normal leading-normal">
+        連携したいノードを追加すると、そのノードから取得した情報が表示されるようになります。
+      </p>
+    </div>
+  );
+}
 
-// function NodeListContent({ nodes }: { nodes: NodeItem[] }) {
-//   return (
-//     <div className="flex flex-col gap-2 mt-2">
-//       {nodes.map((node) => (
-//         <NodeItemCard key={node.id} node={node} />
-//       ))}
-//     </div>
-//   );
-// }
+interface NodeItemCardProps {
+  node: NodeItem;
+  wide?: boolean; // 幅固定するかどうかのフラグ
+}
 
-function NodeItemCard({ node }: { node: NodeItem }) {
+function NodeItemCard({ node, wide = false }: NodeItemCardProps) {
   const iconPath = getNodeIcon(node.displayDataType);
 
   return (
@@ -108,22 +87,20 @@ function NodeItemCard({ node }: { node: NodeItem }) {
       href={node.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="
-        flex
-         items-start gap-2
-        p-[8px]
-        h-[72px]
+      className={`
+        flex items-start gap-2
+        p-[8px] h-[72px]
         border border-[#E8E7E4]
-        rounded
-        hover:bg-gray-50
+        rounded hover:bg-gray-50
         cursor-pointer
-      "
+        ${wide ? "w-[256px]" : ""}
+      `}
     >
       {/* アイコン */}
       <Image src={iconPath} alt={node.displayDataType} width={32} height={32} />
       {/* テキスト部分 */}
       <div className="flex flex-col">
-      <p
+        <p
           className="
             text-[#1C1C1C]
             text-[13px]
@@ -132,7 +109,6 @@ function NodeItemCard({ node }: { node: NodeItem }) {
             tracking-[0.06px]
             overflow-hidden
             text-ellipsis
-            // 以下はインラインスタイルで -webkit-line-clamp
           "
           style={{
             display: '-webkit-box',
@@ -162,7 +138,7 @@ function NodeItemCard({ node }: { node: NodeItem }) {
         >
           {node.description}
         </p>
-        </div>
+      </div>
     </a>
   );
 }

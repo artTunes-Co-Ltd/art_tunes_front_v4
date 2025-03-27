@@ -74,7 +74,6 @@ export default function ProfileDetailCard({
               {user.displayName || "ユーザー名"}
             </div>
 
-            {/* @user_id
             <div
               className="
                 text-[#828282]
@@ -92,8 +91,8 @@ export default function ProfileDetailCard({
                 fontFamily: "Inter, sans-serif",
               }}
             >
-              @user_id
-            </div> */}
+              @{user.uniqueID}
+            </div>
 
             {/* display_id + コピー */}
             <div className="flex items-center gap-2">
