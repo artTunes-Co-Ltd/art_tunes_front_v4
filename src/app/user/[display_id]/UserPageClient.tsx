@@ -38,7 +38,7 @@ export default function UserPageClient({ user, nodes, sources }: UserPageClientP
       <NodeList nodes={nodes} />
       </div>
       {/* ↓ ノード一覧の下に、各ノードの詳細を表示 */}
-      <div className="max-w-[480px] w-full mt-6">
+      <div className="max-w-[448px] w-full mt-6">
         {nodes.map((node) => (
           <NodeDetail key={node.id} node={node} />
         ))}
