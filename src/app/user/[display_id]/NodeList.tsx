@@ -33,13 +33,13 @@ export default function NodeList({ nodes }: { nodes: NodeItem[] }) {
       ) : (
         // ノードが4つ未満なら縦並び、4つ以上なら3つずつ縦に並ぶ列を横に並べる
         nodes.length <= 3 ? (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 py-[12px] ">
             {nodes.map((node) => (
               <NodeItemCard key={node.id} node={node} />
             ))}
           </div>
         ) : (
-          <div className="relative max-w-[480px] w-full h-auto overflow-x-auto hide-scrollbar">
+          <div className="relative  py-[12px] max-w-[480px] w-full h-auto overflow-x-auto hide-scrollbar">
             <div className="grid grid-flow-col grid-rows-3 gap-2">
               {nodes.map((node) => (
                 <NodeItemCard key={node.id} node={node} wide />
